@@ -50,6 +50,25 @@ A platform for book-lovers to browse, favorite, and add books. Users can like an
 ## ERD
 ![erds](./images/Project3ERDs.jpg)
 
+Books {
+    title: {type: String, required: true},
+    author: String,
+    description: String,
+    bookCoverURL: String
+}
+
+Comment {
+    comment: String,
+    note: String,
+    book: String
+}
+
+FavoritesList {
+    user: String,
+    book: String
+}
+
+
 ## API
 #### Google Books API
 * Google Books Search API:
@@ -108,6 +127,6 @@ https://developers.google.com/books/docs/v1/using
 
 
 ## Roles
-Manager - Eshal
-Front End SMEs - Neil, Erisha
-Back End SME - James
+Manager - Eshal  
+Front End SMEs - Neil, Erisha  
+Back End SME - James  
