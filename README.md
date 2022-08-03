@@ -79,3 +79,6 @@ A platform for book-lovers to browse, favorite, and add books. Users can like an
 
 
 ## Roles
+Manager - Eshal
+Front End SMEs - Neil, Erisha
+Back End SME - James
