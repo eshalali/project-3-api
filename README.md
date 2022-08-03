@@ -66,11 +66,6 @@ https://www.googleapis.com/books/v1/volumes?q=harry+potter
 * Google Books Search API with apiKey and max amount of results:
 “https://www.googleapis.com/books/v1/volumes?q=search+terms&key=” + apiKey + “&maxResults=NUMBER”
 
-* apiKey = AIzaSyCSmDTalLl9OYiDr2R0pDecP0x5t9Cadn8
-
-* Example With apiKey and Max Result: 
-https://www.googleapis.com/books/v1/volumes?q=harry+potter&key=AIzaSyCSmDTalLl9OYiDr2R0pDecP0x5t9Cadn8&maxResults=2
-
 * Google Books API DOCS: 
 https://developers.google.com/books/docs/v1/using
 
