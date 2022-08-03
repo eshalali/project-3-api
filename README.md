@@ -37,6 +37,10 @@ A platform for book-lovers to browse, favorite, and add books. Users can like an
 * As a unregistered user, I want to be able to see the book club book
 
 ## Wireframes
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31baeed5dade121dbed7cad182e68260f163db5
 ![StartPage](https://i.imgur.com/6H6f5L3l.png)
 ![Login](https://i.imgur.com/TNNsw0gl.png)
 ![Sign Up](https://i.imgur.com/1ts3qvtl.jpg)
