@@ -20,6 +20,7 @@ const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
 const axios = require('axios');
 
+// Index
 router.get('/books', (req, res, next) => {
     // console.log(bookApi('top-seller', `${apiKey}, '5'`))
     axios.get(bookApi('top-seller', `${apiKey}`, '10'))
@@ -37,15 +38,32 @@ router.get('/books', (req, res, next) => {
         .catch(next)
 })
 
-// router.get('/books/:id', (req, res, next) => {
-// 	Book.findById(req.params.id)
-// 		.populate('owner')
-// 		.then(handle404)
-// 		.then((book) => res.status(200).json({ book: book.toObject() }))
-// 		.catch(next)
-// })
+// Show for specific local database book
+router.get('/books/local/:id', (req, res, next) => {
+    const id = req.params.id
 
-router.post('/books/search', (req, res, next) => {
+    Book.findById(id)
+        .populate('owner')
+        .then(handle404)
+        .then((book) => res.status(200).json({ book: book.toObject() }))
+        .catch(next)
+})
+
+// Show for specific google database book
+router.get('/books/google/:id', (req, res, next) => {
+    const id = req.params.id
+    const googleBookApi = `https://www.googleapis.com/books/v1/volumes/${id}`
+
+    axios.get(googleBookApi)
+        .then(handle404)
+        .then(book => {
+            res.status(200).json(book.data)
+        })
+        .catch(next)
+})
+
+// Search for books from search bar
+router.post('/books/:search', (req, res, next) => {
     const query = req.params.search
     axios.get(bookApi(`${query}`, `${apiKey}`, `10`))
         .then((response) => {
@@ -62,6 +80,7 @@ router.post('/books/search', (req, res, next) => {
         .catch(next)
 })
 
+// Create a book
 router.post('/books', requireToken, (req, res, next) => {
 	req.body.book.owner = req.user.id
 
@@ -72,6 +91,7 @@ router.post('/books', requireToken, (req, res, next) => {
 		.catch(next)
 })
 
+// Update a book after edit
 router.patch('/books/:id', requireToken, removeBlanks, (req, res, next) => {
 	delete req.body.book.owner
 
@@ -85,6 +105,7 @@ router.patch('/books/:id', requireToken, removeBlanks, (req, res, next) => {
 		.catch(next)
 })
 
+// Delete a book
 router.delete('/books/:id', requireToken, (req, res, next) => {
 	Book.findById(req.params.id)
 		.then(handle404)
