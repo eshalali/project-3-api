@@ -63,7 +63,7 @@ router.get('/books/google/:id', (req, res, next) => {
 })
 
 // Search for books from search bar
-router.post('/books/search', (req, res, next) => {
+router.post('/books/:search', (req, res, next) => {
     const query = req.params.search
     axios.get(bookApi(`${query}`, `${apiKey}`, `10`))
         .then((response) => {
