@@ -9,6 +9,10 @@ const commentSchema = new mongoose.Schema(
         owner: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
+        },
+        email: {
+            type: String,
+            ref: 'User'
         }
     }, {
         timestamps: true

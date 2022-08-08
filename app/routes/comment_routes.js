@@ -19,6 +19,7 @@ router.post('/comments/:bookId', requireToken, (req, res, next) => {
     // get our comment from req.body
     const comment = req.body.comment
     comment.owner = req.user.id
+    comment.email = req.user.email
     // get the book id from params
     const bookId = req.params.bookId
     // find the book

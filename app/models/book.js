@@ -13,7 +13,7 @@ const bookSchema = new Schema(
         author: String,
         description: String,
         imageLink: String,
-        comment: [commentSchema],
+        comments: [commentSchema],
         owner: {
 			type: Schema.Types.ObjectId,
 			ref: 'User'
