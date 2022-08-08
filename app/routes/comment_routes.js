@@ -18,6 +18,7 @@ const router = express.Router()
 router.post('/comments/:bookId', requireToken, (req, res, next) => {
     // get our comment from req.body
     const comment = req.body.comment
+    comment.owner = req.user.id
     // get the book id from params
     const bookId = req.params.bookId
     // find the book
@@ -37,7 +38,7 @@ router.post('/comments/:bookId', requireToken, (req, res, next) => {
         .catch(next)
 })
 
-// PATCH - /comments/pet_id/comment_id - edit comment, must be owned by signed in user
+// PATCH - /comments/book_id/comment_id - edit comment, must be owned by signed in user
 router.patch('/comments/:bookId/:commentId', requireToken, removeBlanks, (req, res, next) => {
     // get book and comment ids saved to variables
     const bookId = req.params.bookId
