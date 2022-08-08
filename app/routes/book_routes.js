@@ -24,23 +24,24 @@ const axios = require('axios');
 router.get('/books', (req, res, next) => {
     // console.log(bookApi('top-seller', `${apiKey}, '5'`))
     console.log('route is hit')
-    axios.get(bookApi('top-seller', `${apiKey}`, '10'))
-        .then(response => {
+    // axios.get(bookApi('top-seller', `${apiKey}`, '10'))
+    //     .then(response => {
             Book.find()
                 .populate('owner')
                 .then(books => {
                     return books.map(book => book.toObject())
                 })
                 .then(books => {
-                    res.status(200).json({data: response.data.items, books: books})
+                    // res.status(200).json({ data: response.data.items, books: books })
+                    res.status(200).json({ books: books })
                 })
                 .catch(next)
-        })
-        .catch(next)
+        // })
+        // .catch(next)
 })
 
 // Show for specific local database book
-router.get('/books/local/:id', (req, res, next) => {
+router.get('/books/:id', (req, res, next) => {
     const id = req.params.id
 
     Book.findById(id)
@@ -51,37 +52,35 @@ router.get('/books/local/:id', (req, res, next) => {
 })
 
 // Show for specific google database book
-router.get('/books/google/:id', (req, res, next) => {
-    const id = req.params.id
-    const googleBookApi = `https://www.googleapis.com/books/v1/volumes/${id}?key=${apiKey}`
+// router.get('/books/google/:id', (req, res, next) => {
+//     const id = req.params.id
+//     const googleBookApi = `https://www.googleapis.com/books/v1/volumes/${id}?key=${apiKey}`
 
-    roAdKXzOxusC
-    https://www.googleapis.com/books/v1/volumes/dRL3ywEACAAJ?key=AIzaSyDngckYthjgZ0qlG41k5HDLe-Hp6dRXC5o
-
-    axios.get(googleBookApi)
-        .then(handle404)
-        .then(data => {
-            res.status(200).json({data})
-        })
-        .catch(next)
-})
+//     axios.get(googleBookApi)
+//         .then(handle404)
+//         .then(data => {
+//             res.status(200).json({data})
+//         })
+//         .catch(next)
+// })
 
 // Search for books from search bar
 router.post('/books/:search', (req, res, next) => {
     const query = req.params.search
-    axios.get(bookApi(`${query}`, `${apiKey}`, `10`))
-        .then((response) => {
+    // axios.get(bookApi(`${query}`, `${apiKey}`, `10`))
+    //     .then((response) => {
             Book.find()
                 .populate('owner')
                 .then((books) => {
                     return books.map((book) => book.toObject())
                 })
                 .then((books) => {
-                    res.status(200).json({ data: response.data.items, books: books })
+                    // res.status(200).json({ data: response.data.items, books: books })
+                    res.status(200).json({books: books })
                 })
                 .catch(next)
-        })
-        .catch(next)
+        // })
+        // .catch(next)
 })
 
 // Create a book
