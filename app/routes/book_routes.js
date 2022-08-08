@@ -23,6 +23,7 @@ const axios = require('axios');
 // Index
 router.get('/books', (req, res, next) => {
     // console.log(bookApi('top-seller', `${apiKey}, '5'`))
+    console.log('route is hit')
     axios.get(bookApi('top-seller', `${apiKey}`, '10'))
         .then(response => {
             Book.find()
@@ -52,12 +53,15 @@ router.get('/books/local/:id', (req, res, next) => {
 // Show for specific google database book
 router.get('/books/google/:id', (req, res, next) => {
     const id = req.params.id
-    const googleBookApi = `https://www.googleapis.com/books/v1/volumes/${id}`
+    const googleBookApi = `https://www.googleapis.com/books/v1/volumes/${id}?key=${apiKey}`
+
+    roAdKXzOxusC
+    https://www.googleapis.com/books/v1/volumes/dRL3ywEACAAJ?key=AIzaSyDngckYthjgZ0qlG41k5HDLe-Hp6dRXC5o
 
     axios.get(googleBookApi)
         .then(handle404)
-        .then(book => {
-            res.status(200).json(book.data)
+        .then(data => {
+            res.status(200).json({data})
         })
         .catch(next)
 })

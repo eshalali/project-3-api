@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-// const commentSchema = require('./comment')
+const commentSchema = require('./comment')
 
 const { Schema, model } = mongoose
 
@@ -13,7 +13,7 @@ const bookSchema = new Schema(
         author: String,
         description: String,
         imageLink: String,
-        // comment: [commentSchema],
+        comment: [commentSchema],
         owner: {
 			type: Schema.Types.ObjectId,
 			ref: 'User'
