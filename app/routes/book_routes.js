@@ -113,7 +113,7 @@ router.delete('/books/:id', requireToken, (req, res, next) => {
 	Book.findById(req.params.id)
 		.then(handle404)
 		.then((book) => {
-			requireOwnership(req, Book)
+			requireOwnership(req, book)
 			book.deleteOne()
 		})
 		.then(() => res.sendStatus(204))
